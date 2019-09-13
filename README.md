@@ -67,3 +67,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 # FullStackExample
+
+
+
+### Testing the backend
+add, post and delete requests from the backend was done using postman
