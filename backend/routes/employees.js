@@ -35,20 +35,36 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 })
 
-///create the http delete request
-router.route('/employeeDelete/:_id').delete((req, res) => {
-  Employee.findByIdAndRemove(req.params._id, (err, employee) => {
-    // As always, handle any potential errors:
-    if (err) return res.status(500).send(err);
-    // We'll create a simple object to send back with a message and the id of the document that was removed
-    // You can really do this however you want, though.
-    const response = {
-        message: "Employee successfully deleted",
-        id: employee._id
-    };
-    return res.status(200).send(response);
+///create an http request to fetch an employee by ID
+router.route('/:id').get((req, res) => {
+  Employee.findById(req.params.id)
+    .then(Employee => res.json(Employee))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
-  });
+///create the http delete request
+router.route('/employeeDelete/:id').delete((req, res) => {
+  Employee.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Employee deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+///create the http update request
+router.route('/update/:id').post((req, res) => {
+  Employee.findById(req.params.id)
+    .then(Employee => {
+      Employee.name = req.body.name;
+      Employee.email = req.body.email;
+      Employee.phoneNumber = Number(req.body.phoneNumber);
+      Employee.dateofBirth = Date.parse(req.body.dateofBirth);
+      Employee.title = req.body.title;
+      Employee.imagesource = req.body.imagesource;
+      Employee.department = req.body.department;
+
+      Employee.save()
+        .then(() => res.json('Employee updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
   
 ///export the module api for use in the future
