@@ -19,7 +19,7 @@ const employeesData = new Schema({
         trim: true,
     },
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true,
         unique: false,
     },
@@ -54,7 +54,6 @@ const employeesData = new Schema({
 const Employees = mongoose.model('Employees', employeesData)
 
 ///exporting the Employees module for further use 
-
 
 module.exports = Employees
 
