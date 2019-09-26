@@ -9,8 +9,9 @@ npm run dev
 
 ### Installing npm 
 ### `npm install`
+to install node moules on the master file
 ### `cd frontend && npm install` 
 to install node module on frontend
 
 ### `cd backend && npm install` 
-to install node module on frontend
+to install node module on backend
